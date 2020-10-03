@@ -1,13 +1,18 @@
 import React from "react";
+import "./App.css";
 
-function App() {
+import SnakeGame from "./components/SnakeGame";
+
+const App = () => {
+  const WID = 400;
+  const HGT = 500;
+  const BOX_SIZE = 20;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Snake Game</h1>
-      </header>
+      <SnakeGame width={WID} height={HGT} boxSize={BOX_SIZE} />
     </div>
   );
-}
+};
 
 export default App;
