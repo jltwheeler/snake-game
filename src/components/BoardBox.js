@@ -9,10 +9,10 @@ const StyledBoardBox = styled.div`
   width: ${(props) => props.boxSize}px;
   height: ${(props) => props.boxSize}px;
   background-color: ${(props) => {
-    if (props.isFood) {
-      return "lightblue";
-    } else if (props.isSnake) {
+    if (props.isSnake) {
       return "green";
+    } else if (props.isFood) {
+      return "lightblue";
     } else {
       return "";
     }
