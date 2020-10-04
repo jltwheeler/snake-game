@@ -15,7 +15,7 @@ const H1 = styled.h1`
   font-size: 3rem;
 `;
 
-const Header = ({ title }) => {
+const SnakeHeader = ({ title }) => {
   return (
     <StyledHeader className="header">
       <H1 className="header__text">{title}</H1>
@@ -23,4 +23,4 @@ const Header = ({ title }) => {
   );
 };
 
-export default Header;
+export default SnakeHeader;

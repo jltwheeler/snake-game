@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import BoardRow from "./BoardRow";
@@ -10,14 +10,19 @@ const Container = styled.div`
   padding: 2rem 1rem;
 `;
 
-const StyledSnakeBoard = styled.div`
+const StyledSnakeGrid = styled.div`
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
 `;
 
-const SnakeBoard = ({ width, height, boxSize }) => {
+const SnakeGrid = ({ width, height, boxSize }) => {
   const numRows = Math.floor(height / boxSize);
   const numCols = Math.floor(width / boxSize);
+
+  const [foodLocation, setFoodLocation] = useState([
+    Math.floor(Math.random() * numRows),
+    Math.floor(Math.random() * numRows),
+  ]);
 
   const renderRows = () => {
     return [...Array(numRows)].map((_, idx) => {
@@ -34,11 +39,11 @@ const SnakeBoard = ({ width, height, boxSize }) => {
 
   return (
     <Container>
-      <StyledSnakeBoard width={width} height={height}>
+      <StyledSnakeGrid width={width} height={height}>
         {renderRows()}
-      </StyledSnakeBoard>
+      </StyledSnakeGrid>
     </Container>
   );
 };
 
-export default SnakeBoard;
+export default SnakeGrid;
