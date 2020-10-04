@@ -15,7 +15,7 @@ const StyledSnakeGrid = styled.div`
   height: ${(props) => props.height}px;
 `;
 
-const SnakeGrid = ({ width, height, boxSize, paused }) => {
+const SnakeGrid = ({ width, height, boxSize, paused, updateScore }) => {
   const numRows = Math.floor(height / boxSize);
   const numCols = Math.floor(width / boxSize);
 
@@ -92,9 +92,12 @@ const SnakeGrid = ({ width, height, boxSize, paused }) => {
         const newSnakeLocation = [...snakeLocation];
 
         if (arraysEqual(newHeadLocation, foodLocation)) {
+          // Snake eats the food
           setSnakeLocation([newHeadLocation].concat(newSnakeLocation));
           setFoodLocation(generateRandLoc());
+          updateScore();
         } else {
+          // keep moving the snake
           newSnakeLocation.pop();
           setSnakeLocation([newHeadLocation].concat(newSnakeLocation));
         }

@@ -16,6 +16,10 @@ const SnakeGame = ({ width, height, boxSize }) => {
   const [score, setScore] = useState(0);
   const [paused, setPause] = useState(false);
 
+  const updateScore = () => {
+    setScore(score + 1);
+  };
+
   const updatePause = (event) => {
     event.preventDefault();
     setPause(!paused);
@@ -29,6 +33,7 @@ const SnakeGame = ({ width, height, boxSize }) => {
         height={height}
         boxSize={boxSize}
         paused={paused}
+        updateScore={updateScore}
       />
       <SnakeInfo score={score} updatePause={updatePause} paused={paused} />
     </StyledSnakeGame>

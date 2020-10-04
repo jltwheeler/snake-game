@@ -6,7 +6,7 @@ import SnakeGame from "./components/SnakeGame";
 const App = () => {
   const WID = 400;
   const HGT = 500;
-  const BOX_SIZE = 20;
+  const BOX_SIZE = 50;
 
   return (
     <div className="App">

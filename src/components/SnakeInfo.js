@@ -22,7 +22,7 @@ const SnakeInfo = ({ score, updatePause, paused }) => {
       <Button
         label="Pause"
         handleClick={updatePause}
-        label={paused ? "play" : "paused"}
+        label={paused ? "play" : "pause"}
       />
     </StyledSnakeInfo>
   );
