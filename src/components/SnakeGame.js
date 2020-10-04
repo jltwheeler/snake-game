@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import Header from "./Header";
-import SnakeBoard from "./SnakeBoard";
+import SnakeHeader from "./SnakeHeader";
+import SnakeGrid from "./SnakeGrid";
 import SnakeInfo from "./SnakeInfo";
 
 const StyledSnakeGame = styled.div`
@@ -17,8 +17,8 @@ const SnakeGame = ({ width, height, boxSize }) => {
 
   return (
     <StyledSnakeGame className="game-container">
-      <Header title="snake game" />
-      <SnakeBoard width={width} height={height} boxSize={boxSize} />
+      <SnakeHeader title="snake game" />
+      <SnakeGrid width={width} height={height} boxSize={boxSize} />
       <SnakeInfo score={score} />
     </StyledSnakeGame>
   );
