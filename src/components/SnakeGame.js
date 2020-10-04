@@ -14,12 +14,23 @@ const StyledSnakeGame = styled.div`
 
 const SnakeGame = ({ width, height, boxSize }) => {
   const [score, setScore] = useState(0);
+  const [paused, setPause] = useState(false);
+
+  const updatePause = (event) => {
+    event.preventDefault();
+    setPause(!paused);
+  };
 
   return (
     <StyledSnakeGame className="game-container">
       <SnakeHeader title="snake game" />
-      <SnakeGrid width={width} height={height} boxSize={boxSize} />
-      <SnakeInfo score={score} />
+      <SnakeGrid
+        width={width}
+        height={height}
+        boxSize={boxSize}
+        paused={paused}
+      />
+      <SnakeInfo score={score} updatePause={updatePause} paused={paused} />
     </StyledSnakeGame>
   );
 };

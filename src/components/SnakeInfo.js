@@ -15,11 +15,15 @@ const StyledSnakeInfo = styled.div`
   }
 `;
 
-const SnakeInfo = ({ score }) => {
+const SnakeInfo = ({ score, updatePause, paused }) => {
   return (
     <StyledSnakeInfo className="game-info">
       <div>Score: {score}</div>
-      <Button label="Pause" />
+      <Button
+        label="Pause"
+        handleClick={updatePause}
+        label={paused ? "play" : "paused"}
+      />
     </StyledSnakeInfo>
   );
 };

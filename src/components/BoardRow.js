@@ -27,15 +27,16 @@ const BoardRow = ({
       }
 
       if (
-        snakeLocation.find((location) => idx === location[0]) &&
-        snakeLocation.find((location) => rowNum === location[1])
+        snakeLocation.find(
+          (location) => idx === location[0] && rowNum === location[1]
+        )
       ) {
         isSnake = true;
       }
 
       return (
         <BoardBox
-          key={idx}
+          key={`${rowNum}-${idx}`}
           boxSize={boxSize}
           lastCol={idx === numCols - 1 ? true : false}
           lastRow={lastRow}
