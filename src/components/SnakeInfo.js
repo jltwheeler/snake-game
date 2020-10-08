@@ -19,11 +19,7 @@ const SnakeInfo = ({ score, updatePause, paused }) => {
   return (
     <StyledSnakeInfo className="game-info">
       <div>Score: {score}</div>
-      <Button
-        label="Pause"
-        handleClick={updatePause}
-        label={paused ? "play" : "pause"}
-      />
+      <Button handleClick={updatePause} label={paused ? "play" : "pause"} />
     </StyledSnakeInfo>
   );
 };
