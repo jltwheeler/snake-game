@@ -39,36 +39,55 @@ const SnakeGrid = ({ width, height, boxSize, paused, updateScore }) => {
   };
 
   const [foodLocation, setFoodLocation] = useState(generateRandLoc());
-  const [snakeLocation, setSnakeLocation] = useState([generateRandLoc()]);
-  const [snakeDirection, setSnakeDirection] = useState("up");
+  const [snakeLocation, setSnakeLocation] = useState([
+    [Math.round(numCols / 2), 1],
+  ]);
+  const [snakeDirection, setSnakeDirection] = useState("down");
 
   const handleKeyDown = (event) => {
     if (!paused) {
       switch (event.keyCode) {
         case 37:
           event.preventDefault();
-          setSnakeDirection("left");
+
+          if (snakeDirection !== "right") {
+            setSnakeDirection("left");
+          }
           break;
         case 38:
           event.preventDefault();
-          setSnakeDirection("up");
+
+          if (snakeDirection !== "down") {
+            setSnakeDirection("up");
+          }
           break;
         case 39:
           event.preventDefault();
-          setSnakeDirection("right");
+
+          if (snakeDirection !== "left") {
+            setSnakeDirection("right");
+          }
           break;
         case 40:
           event.preventDefault();
-          setSnakeDirection("down");
+
+          if (snakeDirection !== "up") {
+            setSnakeDirection("down");
+          }
+          break;
+        default:
+        // pass
       }
     }
   };
 
   useEffect(() => {
-    if (!paused) {
-      document.addEventListener("keydown", handleKeyDown);
-    }
-  }, [snakeDirection]);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  });
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -87,6 +106,9 @@ const SnakeGrid = ({ width, height, boxSize, paused, updateScore }) => {
             break;
           case "down":
             newHeadLocation[1] += 1;
+            break;
+          default:
+          // pass
         }
 
         const newSnakeLocation = [...snakeLocation];
@@ -102,7 +124,7 @@ const SnakeGrid = ({ width, height, boxSize, paused, updateScore }) => {
           setSnakeLocation([newHeadLocation].concat(newSnakeLocation));
         }
       }
-    }, 200);
+    }, 100);
 
     return () => {
       clearTimeout(timeout);

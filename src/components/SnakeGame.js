@@ -10,6 +10,7 @@ const StyledSnakeGame = styled.div`
   flex-direction: column;
   background-color: #333;
   color: #fff;
+  width: 60%;
 `;
 
 const SnakeGame = ({ width, height, boxSize }) => {
