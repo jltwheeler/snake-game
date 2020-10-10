@@ -21,12 +21,12 @@ const SnakeInfo = ({
   updatePause,
   paused,
   gameOver,
-  handleGameOver,
+  handleResetGame,
 }) => {
   let stateBtn, startedLabel;
 
   if (gameOver) {
-    stateBtn = <Button handleClick={handleGameOver} label="reset"></Button>;
+    stateBtn = <Button handleClick={handleResetGame} label="reset"></Button>;
     startedLabel = <div>Game Over! Click RESET to play again,</div>;
   } else if (paused) {
     stateBtn = <Button handleClick={updatePause} label="play"></Button>;
@@ -43,7 +43,7 @@ const SnakeInfo = ({
       {startedLabel}
       <div>Score: {score}</div>
       {stateBtn}
-      <Button label="settings" disabled={true} />
+      <Button label="settings" disabled={started ? true : false} />
     </StyledSnakeInfo>
   );
 };

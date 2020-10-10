@@ -32,6 +32,7 @@ const SnakeGrid = ({
   updateFoodLocation,
   updateSnakeLocation,
   updateSnakeDirection,
+  updateStarted,
   generateRandLoc,
 }) => {
   const arraysEqual = (firstArr, secondArr) => {
@@ -95,6 +96,7 @@ const SnakeGrid = ({
     const makeGameOver = () => {
       updatePause(true);
       updateGameOver(!gameOver);
+      updateStarted(false);
     };
 
     const timeout = setTimeout(() => {

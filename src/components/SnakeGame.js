@@ -47,13 +47,14 @@ const SnakeGame = ({ width, height, boxSize }) => {
     setPause(!paused);
   };
 
-  const handleGameOver = (event) => {
+  const handleResetGame = (event) => {
     event.preventDefault();
     setFoodLocation(generateRandLoc());
     setSnakeLocation([[Math.round(numCols / 2), 1]]);
     setSnakeDirection("down");
     setPause(!paused);
     setGameOver(!gameOver);
+    setStarted(true);
     setScore(0);
   };
 
@@ -77,6 +78,7 @@ const SnakeGame = ({ width, height, boxSize }) => {
         updateFoodLocation={setFoodLocation}
         updateSnakeLocation={setSnakeLocation}
         updateSnakeDirection={setSnakeDirection}
+        updateStarted={setStarted}
         generateRandLoc={generateRandLoc}
       />
       <SnakeInfo
@@ -85,7 +87,7 @@ const SnakeGame = ({ width, height, boxSize }) => {
         updatePause={updatePause}
         paused={paused}
         gameOver={gameOver}
-        handleGameOver={handleGameOver}
+        handleResetGame={handleResetGame}
       />
     </StyledSnakeGame>
   );
