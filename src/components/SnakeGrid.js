@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import BoardRow from "./BoardRow";
@@ -15,17 +15,25 @@ const StyledSnakeGrid = styled.div`
   height: ${(props) => props.height}px;
 `;
 
-const SnakeGrid = ({ width, height, boxSize, paused, updateScore }) => {
-  const numRows = Math.floor(height / boxSize);
-  const numCols = Math.floor(width / boxSize);
-
-  const generateRandLoc = () => {
-    return [
-      Math.floor(Math.random() * numCols),
-      Math.floor(Math.random() * numRows),
-    ];
-  };
-
+const SnakeGrid = ({
+  width,
+  height,
+  boxSize,
+  numCols,
+  numRows,
+  paused,
+  gameOver,
+  foodLocation,
+  snakeLocation,
+  updateScore,
+  snakeDirection,
+  updatePause,
+  updateGameOver,
+  updateFoodLocation,
+  updateSnakeLocation,
+  updateSnakeDirection,
+  generateRandLoc,
+}) => {
   const arraysEqual = (firstArr, secondArr) => {
     if (firstArr.length !== secondArr.length) {
       return false;
@@ -38,12 +46,6 @@ const SnakeGrid = ({ width, height, boxSize, paused, updateScore }) => {
     return true;
   };
 
-  const [foodLocation, setFoodLocation] = useState(generateRandLoc());
-  const [snakeLocation, setSnakeLocation] = useState([
-    [Math.round(numCols / 2), 1],
-  ]);
-  const [snakeDirection, setSnakeDirection] = useState("down");
-
   const handleKeyDown = (event) => {
     if (!paused) {
       switch (event.keyCode) {
@@ -51,28 +53,28 @@ const SnakeGrid = ({ width, height, boxSize, paused, updateScore }) => {
           event.preventDefault();
 
           if (snakeDirection !== "right") {
-            setSnakeDirection("left");
+            updateSnakeDirection("left");
           }
           break;
         case 38:
           event.preventDefault();
 
           if (snakeDirection !== "down") {
-            setSnakeDirection("up");
+            updateSnakeDirection("up");
           }
           break;
         case 39:
           event.preventDefault();
 
           if (snakeDirection !== "left") {
-            setSnakeDirection("right");
+            updateSnakeDirection("right");
           }
           break;
         case 40:
           event.preventDefault();
 
           if (snakeDirection !== "up") {
-            setSnakeDirection("down");
+            updateSnakeDirection("down");
           }
           break;
         default:
@@ -90,22 +92,43 @@ const SnakeGrid = ({ width, height, boxSize, paused, updateScore }) => {
   });
 
   useEffect(() => {
+    const updateGameState = () => {
+      updatePause(true);
+      updateGameOver(!gameOver);
+    };
+
     const timeout = setTimeout(() => {
       if (!paused) {
         const newHeadLocation = [...snakeLocation[0]];
 
         switch (snakeDirection) {
           case "left":
-            newHeadLocation[0] -= 1;
+            if (newHeadLocation[0] - 1 < 0) {
+              updateGameState();
+            } else {
+              newHeadLocation[0] -= 1;
+            }
             break;
           case "up":
-            newHeadLocation[1] -= 1;
+            if (newHeadLocation[1] - 1 < 0) {
+              updateGameState();
+            } else {
+              newHeadLocation[1] -= 1;
+            }
             break;
           case "right":
-            newHeadLocation[0] += 1;
+            if (newHeadLocation[0] + 1 > numCols - 1) {
+              updateGameState();
+            } else {
+              newHeadLocation[0] += 1;
+            }
             break;
           case "down":
-            newHeadLocation[1] += 1;
+            if (newHeadLocation[1] + 1 > numRows - 1) {
+              updateGameState();
+            } else {
+              newHeadLocation[1] += 1;
+            }
             break;
           default:
           // pass
@@ -114,17 +137,18 @@ const SnakeGrid = ({ width, height, boxSize, paused, updateScore }) => {
         const newSnakeLocation = [...snakeLocation];
 
         if (arraysEqual(newHeadLocation, foodLocation)) {
+          console.log(newHeadLocation, foodLocation);
           // Snake eats the food
-          setSnakeLocation([newHeadLocation].concat(newSnakeLocation));
-          setFoodLocation(generateRandLoc());
+          updateSnakeLocation([newHeadLocation].concat(newSnakeLocation));
+          updateFoodLocation(generateRandLoc());
           updateScore();
         } else {
           // keep moving the snake
           newSnakeLocation.pop();
-          setSnakeLocation([newHeadLocation].concat(newSnakeLocation));
+          updateSnakeLocation([newHeadLocation].concat(newSnakeLocation));
         }
       }
-    }, 100);
+    }, 80);
 
     return () => {
       clearTimeout(timeout);

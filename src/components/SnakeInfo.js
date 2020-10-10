@@ -15,13 +15,29 @@ const StyledSnakeInfo = styled.div`
   }
 `;
 
-const SnakeInfo = ({ score, updatePause, paused }) => {
-  return (
-    <StyledSnakeInfo className="game-info">
-      <div>Score: {score}</div>
-      <Button handleClick={updatePause} label={paused ? "play" : "pause"} />
-    </StyledSnakeInfo>
-  );
+const SnakeInfo = ({
+  score,
+  updatePause,
+  paused,
+  gameOver,
+  handleGameOver,
+}) => {
+  if (gameOver) {
+    return (
+      <StyledSnakeInfo className="game-info">
+        <Button handleClick={handleGameOver} label="reset"></Button>
+        <div>Score: {score}</div>
+        <Button handleClick={updatePause} label={paused ? "play" : "pause"} />
+      </StyledSnakeInfo>
+    );
+  } else {
+    return (
+      <StyledSnakeInfo className="game-info">
+        <div>Score: {score}</div>
+        <Button handleClick={updatePause} label={paused ? "play" : "pause"} />
+      </StyledSnakeInfo>
+    );
+  }
 };
 
 export default SnakeInfo;
