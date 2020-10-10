@@ -2,13 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import BoardRow from "./BoardRow";
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
-`;
+import Container from "./Container";
 
 const StyledSnakeGrid = styled.div`
   width: ${(props) => props.width}px;
