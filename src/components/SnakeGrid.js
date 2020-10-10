@@ -105,6 +105,7 @@ const SnakeGrid = ({
           case "left":
             if (newHeadLocation[0] - 1 < 0) {
               updateGameState();
+              return;
             } else {
               newHeadLocation[0] -= 1;
             }
@@ -112,6 +113,7 @@ const SnakeGrid = ({
           case "up":
             if (newHeadLocation[1] - 1 < 0) {
               updateGameState();
+              return;
             } else {
               newHeadLocation[1] -= 1;
             }
@@ -119,6 +121,7 @@ const SnakeGrid = ({
           case "right":
             if (newHeadLocation[0] + 1 > numCols - 1) {
               updateGameState();
+              return;
             } else {
               newHeadLocation[0] += 1;
             }
@@ -126,12 +129,18 @@ const SnakeGrid = ({
           case "down":
             if (newHeadLocation[1] + 1 > numRows - 1) {
               updateGameState();
+              return;
             } else {
               newHeadLocation[1] += 1;
             }
             break;
           default:
           // pass
+        }
+
+        // Check if snake eats itself
+        if (newHeadLocation) {
+          console.log(newHeadLocation);
         }
 
         const newSnakeLocation = [...snakeLocation];
