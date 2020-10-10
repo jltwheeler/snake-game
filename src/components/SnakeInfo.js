@@ -16,28 +16,36 @@ const StyledSnakeInfo = styled.div`
 `;
 
 const SnakeInfo = ({
+  started,
   score,
   updatePause,
   paused,
   gameOver,
   handleGameOver,
 }) => {
+  let stateBtn, startedLabel;
+
   if (gameOver) {
-    return (
-      <StyledSnakeInfo className="game-info">
-        <Button handleClick={handleGameOver} label="reset"></Button>
-        <div>Score: {score}</div>
-        <Button handleClick={updatePause} label={paused ? "play" : "pause"} />
-      </StyledSnakeInfo>
-    );
+    stateBtn = <Button handleClick={handleGameOver} label="reset"></Button>;
+    startedLabel = <div>Game Over! Click RESET to play again,</div>;
+  } else if (paused) {
+    stateBtn = <Button handleClick={updatePause} label="play"></Button>;
   } else {
-    return (
-      <StyledSnakeInfo className="game-info">
-        <div>Score: {score}</div>
-        <Button handleClick={updatePause} label={paused ? "play" : "pause"} />
-      </StyledSnakeInfo>
-    );
+    stateBtn = <Button handleClick={updatePause} label="pause"></Button>;
   }
+
+  if (!started) {
+    startedLabel = <div>Click PLAY to start the game.</div>;
+  }
+
+  return (
+    <StyledSnakeInfo className="game-info">
+      {startedLabel}
+      <div>Score: {score}</div>
+      {stateBtn}
+      <Button label="settings" disabled={true} />
+    </StyledSnakeInfo>
+  );
 };
 
 export default SnakeInfo;

@@ -15,10 +15,22 @@ const StyledButton = styled.button`
     background-color: red;
     transform: scale(1.05);
   }
+
+  &:disabled {
+    background-color: grey;
+  }
+
+  &:disabled:hover {
+    transform: scale(1);
+  }
 `;
 
-const Button = ({ label, handleClick }) => {
-  return <StyledButton onClick={(e) => handleClick(e)}>{label}</StyledButton>;
+const Button = ({ label, handleClick, disabled }) => {
+  return (
+    <StyledButton onClick={(e) => handleClick(e)} disabled={disabled}>
+      {label}
+    </StyledButton>
+  );
 };
 
 export default Button;

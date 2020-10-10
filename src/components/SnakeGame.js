@@ -24,13 +24,12 @@ const SnakeGame = ({ width, height, boxSize }) => {
   };
 
   const [score, setScore] = useState(0);
-  const [paused, setPause] = useState(false);
+  const [paused, setPause] = useState(true);
+  const [started, setStarted] = useState(false);
   const [gameOver, setGameOver] = useState(false);
 
-  const [foodLocation, setFoodLocation] = useState(generateRandLoc());
-  const [snakeLocation, setSnakeLocation] = useState([
-    [Math.round(numCols / 2), 1],
-  ]);
+  const [foodLocation, setFoodLocation] = useState([]);
+  const [snakeLocation, setSnakeLocation] = useState([]);
   const [snakeDirection, setSnakeDirection] = useState("down");
 
   const updateScore = () => {
@@ -39,6 +38,12 @@ const SnakeGame = ({ width, height, boxSize }) => {
 
   const updatePause = (event) => {
     event.preventDefault();
+
+    if (!started) {
+      setStarted(true);
+      setFoodLocation(generateRandLoc());
+      setSnakeLocation([[Math.round(numCols / 2), 1]]);
+    }
     setPause(!paused);
   };
 
@@ -75,6 +80,7 @@ const SnakeGame = ({ width, height, boxSize }) => {
         generateRandLoc={generateRandLoc}
       />
       <SnakeInfo
+        started={started}
         score={score}
         updatePause={updatePause}
         paused={paused}
