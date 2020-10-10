@@ -92,7 +92,7 @@ const SnakeGrid = ({
   });
 
   useEffect(() => {
-    const updateGameState = () => {
+    const makeGameOver = () => {
       updatePause(true);
       updateGameOver(!gameOver);
     };
@@ -104,7 +104,7 @@ const SnakeGrid = ({
         switch (snakeDirection) {
           case "left":
             if (newHeadLocation[0] - 1 < 0) {
-              updateGameState();
+              makeGameOver();
               return;
             } else {
               newHeadLocation[0] -= 1;
@@ -112,7 +112,7 @@ const SnakeGrid = ({
             break;
           case "up":
             if (newHeadLocation[1] - 1 < 0) {
-              updateGameState();
+              makeGameOver();
               return;
             } else {
               newHeadLocation[1] -= 1;
@@ -120,7 +120,7 @@ const SnakeGrid = ({
             break;
           case "right":
             if (newHeadLocation[0] + 1 > numCols - 1) {
-              updateGameState();
+              makeGameOver();
               return;
             } else {
               newHeadLocation[0] += 1;
@@ -128,7 +128,7 @@ const SnakeGrid = ({
             break;
           case "down":
             if (newHeadLocation[1] + 1 > numRows - 1) {
-              updateGameState();
+              makeGameOver();
               return;
             } else {
               newHeadLocation[1] += 1;
@@ -139,8 +139,8 @@ const SnakeGrid = ({
         }
 
         // Check if snake eats itself
-        if (newHeadLocation) {
-          console.log(newHeadLocation);
+        if (snakeLocation.find((item) => arraysEqual(item, newHeadLocation))) {
+          makeGameOver();
         }
 
         const newSnakeLocation = [...snakeLocation];

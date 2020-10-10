@@ -10,7 +10,7 @@ const StyledSnakeGame = styled.div`
   flex-direction: column;
   background-color: #333;
   color: #fff;
-  width: 60%;
+  width: ${(props) => props.width * 1.2}px;
 `;
 
 const SnakeGame = ({ width, height, boxSize }) => {
@@ -53,7 +53,7 @@ const SnakeGame = ({ width, height, boxSize }) => {
   };
 
   return (
-    <StyledSnakeGame className="game-container">
+    <StyledSnakeGame width={width} className="game-container">
       <SnakeHeader title="snake game" />
       <SnakeGrid
         width={width}
