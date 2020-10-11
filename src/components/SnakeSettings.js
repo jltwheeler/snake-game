@@ -7,7 +7,6 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import Radio from "@material-ui/core/Radio";
-
 import Button from "./Button";
 import Container from "./Container";
 
@@ -23,6 +22,17 @@ const StyledHeading = styled.h2`
   text-align: center;
   color: lightblue;
   text-transform: uppercase;
+`;
+
+const StyledLabel = styled(FormLabel)`
+  color: #fff;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin: 0.75rem 0;
+`;
+
+const StyledFormGroup = styled(FormGroup)`
+  margin: 0.75rem 0;
 `;
 
 const SnakeSettings = ({ width, height }) => {
@@ -42,8 +52,8 @@ const SnakeSettings = ({ width, height }) => {
       <StyledSettings width={width} height={height}>
         <StyledHeading>Settings</StyledHeading>
         <Container>
-          <FormControl component="fieldset">
-            <FormGroup row>
+          <FormControl style={{ padding: "1rem" }} component="fieldset">
+            <StyledFormGroup row>
               <FormControlLabel
                 control={
                   <Switch
@@ -53,9 +63,9 @@ const SnakeSettings = ({ width, height }) => {
                     name="vim-mode"
                   />
                 }
-                label="VIM MODE"
+                label={<StyledLabel>vim mode</StyledLabel>}
               />
-            </FormGroup>
+            </StyledFormGroup>
             <FormGroup row>
               <FormControlLabel
                 control={
@@ -66,61 +76,68 @@ const SnakeSettings = ({ width, height }) => {
                     name="obstacle-mode"
                   />
                 }
-                label="OBSTACLE MODE"
+                label={<StyledLabel>obstacle mode</StyledLabel>}
               />
             </FormGroup>
-            <FormLabel>CHOOSE GAME SPEED</FormLabel>
-            <RadioGroup
-              row
-              aria-label="position"
-              name="position"
-              defaultValue="top"
-            >
-              <FormControlLabel
-                value="slow"
-                control={<Radio color="primary" />}
-                label="SLOW"
-                labelPlacement="bottom"
-              />{" "}
-              <FormControlLabel
-                value="moderate"
-                control={<Radio color="primary" />}
-                label="MODERATE"
-                labelPlacement="bottom"
-              />{" "}
-              <FormControlLabel
-                value="fast"
-                control={<Radio color="primary" />}
-                label="FAST"
-                labelPlacement="bottom"
-              />
-            </RadioGroup>
-            <FormLabel>CHOOSE GRID SIZE</FormLabel>
-            <RadioGroup
-              row
-              aria-label="position"
-              name="position"
-              defaultValue="top"
-            >
-              <FormControlLabel
-                value="small"
-                control={<Radio color="primary" />}
-                label="SMALL"
-                labelPlacement="bottom"
-              />{" "}
-              <FormControlLabel
-                value="medium"
-                control={<Radio color="primary" />}
-                label="MEDIUM"
-                labelPlacement="bottom"
-              />{" "}
-              <FormControlLabel
-                value="large"
-                control={<Radio color="primary" />}
-                label="LARGE"
-                labelPlacement="bottom"
-              />
-            </RadioGroup>{" "}
+            <StyledFormGroup>
+              <StyledLabel>choose game speed</StyledLabel>
+              <RadioGroup
+                row
+                aria-label="position"
+                name="position"
+                defaultValue="top"
+              >
+                <FormControlLabel
+                  value="slow"
+                  control={<Radio color="primary" />}
+                  label={<StyledLabel>slow</StyledLabel>}
+                  labelPlacement="bottom"
+                />{" "}
+                <FormControlLabel
+                  value="moderate"
+                  control={<Radio color="primary" />}
+                  label="MODERATE"
+                  label={<StyledLabel>slow</StyledLabel>}
+                  labelPlacement="bottom"
+                />{" "}
+                <FormControlLabel
+                  value="fast"
+                  control={<Radio color="primary" />}
+                  label={<StyledLabel>fast</StyledLabel>}
+                  labelPlacement="bottom"
+                />
+              </RadioGroup>
+            </StyledFormGroup>
+            <StyledFormGroup>
+              <StyledLabel>choose grid size</StyledLabel>
+              <RadioGroup
+                row
+                aria-label="position"
+                name="position"
+                defaultValue="top"
+              >
+                <FormControlLabel
+                  value="small"
+                  control={<Radio color="primary" />}
+                  label="SMALL"
+                  label={<StyledLabel>small</StyledLabel>}
+                  labelPlacement="bottom"
+                />{" "}
+                <FormControlLabel
+                  value="medium"
+                  control={<Radio color="primary" />}
+                  label="MEDIUM"
+                  label={<StyledLabel>medium</StyledLabel>}
+                  labelPlacement="bottom"
+                />{" "}
+                <FormControlLabel
+                  value="large"
+                  control={<Radio color="primary" />}
+                  label={<StyledLabel>large</StyledLabel>}
+                  labelPlacement="bottom"
+                />
+              </RadioGroup>{" "}
+            </StyledFormGroup>
           </FormControl>
         </Container>
         <Container>
