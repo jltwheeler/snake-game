@@ -28,7 +28,13 @@ const SnakeInfo = ({
   let stateBtn, startedLabel;
 
   if (gameOver) {
-    stateBtn = <Button handleClick={handleResetGame} label="reset"></Button>;
+    stateBtn = (
+      <Button
+        handleClick={handleResetGame}
+        label="reset"
+        disabled={inSettings ? true : false}
+      ></Button>
+    );
     startedLabel = <div>Game Over! Click RESET to play again,</div>;
   } else if (paused) {
     stateBtn = (
