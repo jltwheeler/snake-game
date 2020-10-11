@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { StylesProvider } from "@material-ui/core/styles";
 
 import SnakeHeader from "./SnakeHeader";
 import SnakeGrid from "./SnakeGrid";
@@ -28,7 +29,7 @@ const SnakeGame = ({ width, height, boxSize }) => {
   const [paused, setPause] = useState(true);
   const [started, setStarted] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [inSettings, setInSettings] = useState(false);
+  const [inSettings, setInSettings] = useState(true);
 
   const [foodLocation, setFoodLocation] = useState([]);
   const [snakeLocation, setSnakeLocation] = useState([]);
@@ -94,20 +95,22 @@ const SnakeGame = ({ width, height, boxSize }) => {
   }
 
   return (
-    <StyledSnakeGame width={width} className="game-container">
-      <SnakeHeader title="snake game" />
-      {mainComponent}
-      <SnakeInfo
-        started={started}
-        score={score}
-        updatePause={updatePause}
-        paused={paused}
-        gameOver={gameOver}
-        inSettings={inSettings}
-        handleResetGame={handleResetGame}
-        handleClickSettings={handleClickSettings}
-      />
-    </StyledSnakeGame>
+    <StylesProvider injectFirst>
+      <StyledSnakeGame width={width} className="game-container">
+        <SnakeHeader title="snake game" />
+        {mainComponent}
+        <SnakeInfo
+          started={started}
+          score={score}
+          updatePause={updatePause}
+          paused={paused}
+          gameOver={gameOver}
+          inSettings={inSettings}
+          handleResetGame={handleResetGame}
+          handleClickSettings={handleClickSettings}
+        />
+      </StyledSnakeGame>
+    </StylesProvider>
   );
 };
 
