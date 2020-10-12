@@ -1,4 +1,5 @@
 /* Contains CSS resets */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 *,
 *::after,
@@ -6,20 +7,25 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+  color: #cbd5e0;
 }
 
 html {
   font-size: 62.5%;
+  background: radial-gradient(
+    circle,
+    rgba(203, 213, 224, 1) 0%,
+    rgba(113, 128, 150, 1) 40%,
+    rgba(44, 82, 130, 1) 80%
+  );
 }
 
 body {
   box-sizing: border-box;
-}
-
-body {
-  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.7;
-  padding: 3rem;
 }
