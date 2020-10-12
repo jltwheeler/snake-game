@@ -29,3 +29,8 @@ body {
   font-size: 16px;
   line-height: 1.7;
 }
+
+/* Material UI global overrides */
+.MuiFormLabel-root.Mui-focused {
+  color: #cbd5e0;
+}
