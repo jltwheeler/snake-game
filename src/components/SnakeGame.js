@@ -13,6 +13,7 @@ const StyledSnakeGame = styled.div`
   background-color: #333;
   color: #fff;
   width: ${(props) => props.width * 1.2}px;
+  border-radius: 4rem;
 `;
 
 const SnakeGame = ({ width, height, boxSize }) => {
@@ -25,12 +26,20 @@ const SnakeGame = ({ width, height, boxSize }) => {
     ];
   };
 
+  // Game playing state
   const [score, setScore] = useState(0);
   const [paused, setPause] = useState(true);
   const [started, setStarted] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [inSettings, setInSettings] = useState(true);
 
+  // Settings state
+  const [inSettings, setInSettings] = useState(false);
+  const [vimMode, setVimMode] = useState(false);
+  const [obstacleMode, setObstacleMode] = useState(false);
+  const [speed, setSpeed] = useState("moderate");
+  const [gridSize, setGridSize] = useState("medium");
+
+  // Snake specific state
   const [foodLocation, setFoodLocation] = useState([]);
   const [snakeLocation, setSnakeLocation] = useState([]);
   const [snakeDirection, setSnakeDirection] = useState("down");
@@ -63,12 +72,42 @@ const SnakeGame = ({ width, height, boxSize }) => {
 
   const handleClickSettings = (event) => {
     event.preventDefault();
-    setInSettings(true);
+    setInSettings(!inSettings);
+  };
+
+  const handleChangeVimMode = (event) => {
+    setVimMode(event.target.checked);
+  };
+
+  const handleChangeObstacleMode = (event) => {
+    setObstacleMode(event.target.checked);
+  };
+
+  const handleChangeSpeed = (event) => {
+    setSpeed(event.target.value);
+  };
+
+  const handleChangeGridSize = (event) => {
+    setGridSize(event.target.value);
   };
 
   let mainComponent;
   if (inSettings) {
-    mainComponent = <SnakeSettings width={width} height={height} />;
+    mainComponent = (
+      <SnakeSettings
+        width={width}
+        height={height}
+        vimMode={vimMode}
+        obstacleMode={obstacleMode}
+        speed={speed}
+        gridSize={gridSize}
+        handleClickSettings={handleClickSettings}
+        handleChangeVimMode={handleChangeVimMode}
+        handleChangeObstacleMode={handleChangeObstacleMode}
+        handleChangeSpeed={handleChangeSpeed}
+        handleChangeGridSize={handleChangeGridSize}
+      />
+    );
   } else {
     mainComponent = (
       <SnakeGrid
@@ -83,6 +122,10 @@ const SnakeGame = ({ width, height, boxSize }) => {
         snakeLocation={snakeLocation}
         updateScore={updateScore}
         snakeDirection={snakeDirection}
+        vimMode={vimMode}
+        obstacleMode={obstacleMode}
+        speed={speed}
+        gridSize={gridSize}
         updatePause={setPause}
         updateGameOver={setGameOver}
         updateFoodLocation={setFoodLocation}
