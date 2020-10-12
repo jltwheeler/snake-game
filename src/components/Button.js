@@ -16,8 +16,14 @@ const StyledButton = styled.button`
     transform: scale(1.05);
   }
 
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
   &:disabled {
     background-color: grey;
+    cursor: default;
   }
 
   &:disabled:hover {
