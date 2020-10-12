@@ -20,6 +20,7 @@ const SnakeInfo = ({
   score,
   updatePause,
   paused,
+  vimMode,
   gameOver,
   inSettings,
   handleResetGame,
@@ -46,7 +47,9 @@ const SnakeInfo = ({
       ></Button>
     );
   } else {
-    startedLabel = <div>Game Playing</div>;
+    startedLabel = (
+      <div>Game playing in {vimMode ? "Vim mode." : "normal mode"}</div>
+    );
     stateBtn = <Button handleClick={updatePause} label="pause"></Button>;
   }
 

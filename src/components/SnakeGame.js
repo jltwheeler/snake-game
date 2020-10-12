@@ -149,6 +149,7 @@ const SnakeGame = ({ width, height, boxSize }) => {
           score={score}
           updatePause={updatePause}
           paused={paused}
+          vimMode={vimMode}
           gameOver={gameOver}
           inSettings={inSettings}
           handleResetGame={handleResetGame}
