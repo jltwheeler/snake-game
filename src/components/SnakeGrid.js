@@ -83,10 +83,10 @@ const SnakeGrid = ({
   };
 
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   });
 
@@ -146,7 +146,6 @@ const SnakeGrid = ({
         const newSnakeLocation = [...snakeLocation];
 
         if (arraysEqual(newHeadLocation, foodLocation)) {
-          console.log(newHeadLocation, foodLocation);
           // Snake eats the food
           updateSnakeLocation([newHeadLocation].concat(newSnakeLocation));
           updateFoodLocation(generateRandLoc());

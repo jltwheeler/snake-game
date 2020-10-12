@@ -92,57 +92,58 @@ const SnakeGame = ({ width, height, boxSize }) => {
     setGridSize(event.target.value);
   };
 
-  let mainComponent;
-  if (inSettings) {
-    mainComponent = (
-      <SnakeSettings
-        width={width}
-        height={height}
-        vimMode={vimMode}
-        obstacleMode={obstacleMode}
-        speed={speed}
-        gridSize={gridSize}
-        handleClickSettings={handleClickSettings}
-        handleChangeVimMode={handleChangeVimMode}
-        handleChangeObstacleMode={handleChangeObstacleMode}
-        handleChangeSpeed={handleChangeSpeed}
-        handleChangeGridSize={handleChangeGridSize}
-      />
-    );
-  } else {
-    mainComponent = (
-      <SnakeGrid
-        width={width}
-        height={height}
-        boxSize={boxSize}
-        numCols={numCols}
-        numRows={numRows}
-        paused={paused}
-        gameOver={gameOver}
-        foodLocation={foodLocation}
-        snakeLocation={snakeLocation}
-        updateScore={updateScore}
-        snakeDirection={snakeDirection}
-        vimMode={vimMode}
-        obstacleMode={obstacleMode}
-        speed={speed}
-        gridSize={gridSize}
-        updatePause={setPause}
-        updateGameOver={setGameOver}
-        updateFoodLocation={setFoodLocation}
-        updateSnakeLocation={setSnakeLocation}
-        updateSnakeDirection={setSnakeDirection}
-        updateStarted={setStarted}
-        generateRandLoc={generateRandLoc}
-      />
-    );
-  }
+  const renderMainComponent = () => {
+    if (inSettings) {
+      return (
+        <SnakeSettings
+          width={width}
+          height={height}
+          vimMode={vimMode}
+          obstacleMode={obstacleMode}
+          speed={speed}
+          gridSize={gridSize}
+          handleClickSettings={handleClickSettings}
+          handleChangeVimMode={handleChangeVimMode}
+          handleChangeObstacleMode={handleChangeObstacleMode}
+          handleChangeSpeed={handleChangeSpeed}
+          handleChangeGridSize={handleChangeGridSize}
+        />
+      );
+    } else {
+      return (
+        <SnakeGrid
+          width={width}
+          height={height}
+          boxSize={boxSize}
+          numCols={numCols}
+          numRows={numRows}
+          paused={paused}
+          gameOver={gameOver}
+          foodLocation={foodLocation}
+          snakeLocation={snakeLocation}
+          updateScore={updateScore}
+          snakeDirection={snakeDirection}
+          vimMode={vimMode}
+          obstacleMode={obstacleMode}
+          speed={speed}
+          gridSize={gridSize}
+          updatePause={setPause}
+          updateGameOver={setGameOver}
+          updateFoodLocation={setFoodLocation}
+          updateSnakeLocation={setSnakeLocation}
+          updateSnakeDirection={setSnakeDirection}
+          updateStarted={setStarted}
+          generateRandLoc={generateRandLoc}
+        />
+      );
+    }
+  };
 
   return (
     <StylesProvider injectFirst>
       <StyledSnakeGame width={width} className="game-container">
         <SnakeHeader title="snake game" />
-        {mainComponent}
+        {renderMainComponent()}
         <SnakeInfo
           started={started}
           score={score}

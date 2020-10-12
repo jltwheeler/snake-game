@@ -67,7 +67,7 @@ const SnakeSettings = ({
                 label={<StyledLabel>vim mode</StyledLabel>}
               />
             </StyledFormGroup>
-            <FormGroup row>
+            <StyledFormGroup row>
               <FormControlLabel
                 control={
                   <Switch
@@ -79,7 +79,7 @@ const SnakeSettings = ({
                 }
                 label={<StyledLabel>obstacle mode</StyledLabel>}
               />
-            </FormGroup>
+            </StyledFormGroup>
             <StyledFormGroup>
               <StyledLabel>choose game speed</StyledLabel>
               <RadioGroup
@@ -94,13 +94,13 @@ const SnakeSettings = ({
                   control={<Radio color="primary" />}
                   label={<StyledLabel>slow</StyledLabel>}
                   labelPlacement="bottom"
-                />{" "}
+                />
                 <FormControlLabel
                   value="moderate"
                   control={<Radio color="primary" />}
                   label={<StyledLabel>moderate</StyledLabel>}
                   labelPlacement="bottom"
-                />{" "}
+                />
                 <FormControlLabel
                   value="fast"
                   control={<Radio color="primary" />}
@@ -123,20 +123,20 @@ const SnakeSettings = ({
                   control={<Radio color="primary" />}
                   label={<StyledLabel>small</StyledLabel>}
                   labelPlacement="bottom"
-                />{" "}
+                />
                 <FormControlLabel
                   value="medium"
                   control={<Radio color="primary" />}
                   label={<StyledLabel>medium</StyledLabel>}
                   labelPlacement="bottom"
-                />{" "}
+                />
                 <FormControlLabel
                   value="large"
                   control={<Radio color="primary" />}
                   label={<StyledLabel>large</StyledLabel>}
                   labelPlacement="bottom"
                 />
-              </RadioGroup>{" "}
+              </RadioGroup>
             </StyledFormGroup>
           </FormControl>
         </Container>

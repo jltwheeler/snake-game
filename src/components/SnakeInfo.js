@@ -35,8 +35,9 @@ const SnakeInfo = ({
         disabled={inSettings ? true : false}
       ></Button>
     );
-    startedLabel = <div>Game Over! Click RESET to play again,</div>;
+    startedLabel = <div>Game Over! Click RESET to play again.</div>;
   } else if (paused) {
+    startedLabel = <div>Game Paused</div>;
     stateBtn = (
       <Button
         handleClick={updatePause}
@@ -45,6 +46,7 @@ const SnakeInfo = ({
       ></Button>
     );
   } else {
+    startedLabel = <div>Game Playing</div>;
     stateBtn = <Button handleClick={updatePause} label="pause"></Button>;
   }
 
