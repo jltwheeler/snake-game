@@ -25,7 +25,7 @@ const StyledHeading = styled.h2`
 `;
 
 const StyledLabel = styled(FormLabel)`
-  color: #fff;
+  color: #cbd5e0;
   font-size: 1.5rem;
   text-transform: uppercase;
   margin: 0.75rem 0;
@@ -86,7 +86,8 @@ const SnakeSettings = ({
                 row
                 aria-label="position"
                 name="position"
-                defaultValue={speed}
+                onChange={handleChangeSpeed}
+                value={speed}
               >
                 <FormControlLabel
                   value="slow"
@@ -114,7 +115,8 @@ const SnakeSettings = ({
                 row
                 aria-label="position"
                 name="position"
-                defaultValue={gridSize}
+                onChange={handleChangeGridSize}
+                value={gridSize}
               >
                 <FormControlLabel
                   value="small"

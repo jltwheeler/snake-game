@@ -5,14 +5,14 @@ const StyledButton = styled.button`
   text-transform: uppercase;
   color: #fff;
   font-size: 1.5rem;
-  background-color: orangered;
+  background-color: #2c5282;
   border: none;
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.25rem;
   border-radius: 100px;
   cursor: pointer;
 
   &:hover {
-    background-color: red;
+    background-color: #3182ce;
     transform: scale(1.05);
   }
 

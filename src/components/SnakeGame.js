@@ -13,6 +13,7 @@ const StyledSnakeGame = styled.div`
   background-color: #333;
   color: #fff;
   width: ${(props) => props.width * 1.2}px;
+  box-shadow: 0 1.25rem 2rem rgba(0, 0, 0, 0.6);
   border-radius: 4rem;
 `;
 
