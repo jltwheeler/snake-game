@@ -23,8 +23,7 @@ const SnakeGrid = ({
   snakeDirection,
   vimMode,
   obstalceMode,
-  speed,
-  gridSize,
+  timeoutTime,
   updatePause,
   updateGameOver,
   updateFoodLocation,
@@ -48,28 +47,28 @@ const SnakeGrid = ({
   const handleKeyDown = (event) => {
     if (!paused) {
       switch (event.keyCode) {
-        case 37:
+        case vimMode ? 72 : 37:
           event.preventDefault();
 
           if (snakeDirection !== "right") {
             updateSnakeDirection("left");
           }
           break;
-        case 38:
+        case vimMode ? 75 : 38:
           event.preventDefault();
 
           if (snakeDirection !== "down") {
             updateSnakeDirection("up");
           }
           break;
-        case 39:
+        case vimMode ? 76 : 39:
           event.preventDefault();
 
           if (snakeDirection !== "left") {
             updateSnakeDirection("right");
           }
           break;
-        case 40:
+        case vimMode ? 74 : 40:
           event.preventDefault();
 
           if (snakeDirection !== "up") {
@@ -156,7 +155,7 @@ const SnakeGrid = ({
           updateSnakeLocation([newHeadLocation].concat(newSnakeLocation));
         }
       }
-    }, 80);
+    }, timeoutTime);
 
     return () => {
       clearTimeout(timeout);

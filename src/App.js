@@ -15,12 +15,11 @@ const Flexbox = styled.div`
 const App = () => {
   const WID = 400;
   const HGT = 500;
-  const BOX_SIZE = 25;
 
   return (
     <div className="App">
       <Flexbox>
-        <SnakeGame width={WID} height={HGT} boxSize={BOX_SIZE} />
+        <SnakeGame width={WID} height={HGT} />
       </Flexbox>
     </div>
   );

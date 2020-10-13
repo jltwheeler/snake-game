@@ -12,7 +12,6 @@ import Button from "./Button";
 import Container from "./Container";
 
 const StyledSettings = styled.div`
-  background-color: #333;
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
 `;
@@ -42,12 +41,41 @@ const SnakeSettings = ({
   obstacleMode,
   speed,
   gridSize,
+  speeds,
+  sizes,
   handleClickSettings,
   handleChangeVimMode,
   handleChangeObstacleMode,
   handleChangeSpeed,
   handleChangeGridSize,
 }) => {
+  const renderRadioButtons = (items, handleChange, value) => {
+    const renderRadios = () =>
+      items.map((item) => {
+        return (
+          <FormControlLabel
+            key={item}
+            value={item}
+            control={<Radio color="primary" />}
+            label={<StyledLabel>{item}</StyledLabel>}
+            labelPlacement="bottom"
+          />
+        );
+      });
+
+    return (
+      <RadioGroup
+        row
+        aria-label="position"
+        name="position"
+        onChange={handleChange}
+        value={value}
+      >
+        {renderRadios()}
+      </RadioGroup>
+    );
+  };
+
   return (
     <Container>
       <StyledSettings width={width} height={height}>
@@ -82,61 +110,11 @@ const SnakeSettings = ({
             </StyledFormGroup>
             <StyledFormGroup>
               <StyledLabel>choose game speed</StyledLabel>
-              <RadioGroup
-                row
-                aria-label="position"
-                name="position"
-                onChange={handleChangeSpeed}
-                value={speed}
-              >
-                <FormControlLabel
-                  value="slow"
-                  control={<Radio color="primary" />}
-                  label={<StyledLabel>slow</StyledLabel>}
-                  labelPlacement="bottom"
-                />
-                <FormControlLabel
-                  value="moderate"
-                  control={<Radio color="primary" />}
-                  label={<StyledLabel>moderate</StyledLabel>}
-                  labelPlacement="bottom"
-                />
-                <FormControlLabel
-                  value="fast"
-                  control={<Radio color="primary" />}
-                  label={<StyledLabel>fast</StyledLabel>}
-                  labelPlacement="bottom"
-                />
-              </RadioGroup>
+              {renderRadioButtons(speeds, handleChangeSpeed, speed)}
             </StyledFormGroup>
             <StyledFormGroup>
               <StyledLabel>choose grid size</StyledLabel>
-              <RadioGroup
-                row
-                aria-label="position"
-                name="position"
-                onChange={handleChangeGridSize}
-                value={gridSize}
-              >
-                <FormControlLabel
-                  value="small"
-                  control={<Radio color="primary" />}
-                  label={<StyledLabel>small</StyledLabel>}
-                  labelPlacement="bottom"
-                />
-                <FormControlLabel
-                  value="medium"
-                  control={<Radio color="primary" />}
-                  label={<StyledLabel>medium</StyledLabel>}
-                  labelPlacement="bottom"
-                />
-                <FormControlLabel
-                  value="large"
-                  control={<Radio color="primary" />}
-                  label={<StyledLabel>large</StyledLabel>}
-                  labelPlacement="bottom"
-                />
-              </RadioGroup>
+              {renderRadioButtons(sizes, handleChangeGridSize, gridSize)}
             </StyledFormGroup>
           </FormControl>
         </Container>

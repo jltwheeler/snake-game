@@ -17,7 +17,38 @@ const StyledSnakeGame = styled.div`
   border-radius: 4rem;
 `;
 
-const SnakeGame = ({ width, height, boxSize }) => {
+const SnakeGame = ({ width, height }) => {
+  // Settings state
+  const [inSettings, setInSettings] = useState(true);
+  const [vimMode, setVimMode] = useState(false);
+  const [obstacleMode, setObstacleMode] = useState(false);
+  const [speed, setSpeed] = useState("moderate");
+  const [gridSize, setGridSize] = useState("medium");
+
+  let boxSize, timeoutTime;
+  const sizes = ["small", "medium", "large"];
+  const speeds = ["slow", "moderate", "fast"];
+
+  if (gridSize === sizes[0]) {
+    boxSize = 15;
+  } else if (gridSize === sizes[1]) {
+    boxSize = 25;
+  } else if (gridSize === sizes[2]) {
+    boxSize = 40;
+  } else {
+    boxSize = 25;
+  }
+
+  if (speed === speeds[0]) {
+    timeoutTime = 110;
+  } else if (speed === speeds[1]) {
+    timeoutTime = 80;
+  } else if (speed === speeds[2]) {
+    timeoutTime = 40;
+  } else {
+    timeoutTime = 80;
+  }
+
   const numRows = Math.floor(height / boxSize);
   const numCols = Math.floor(width / boxSize);
   const generateRandLoc = () => {
@@ -32,13 +63,6 @@ const SnakeGame = ({ width, height, boxSize }) => {
   const [paused, setPause] = useState(true);
   const [started, setStarted] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-
-  // Settings state
-  const [inSettings, setInSettings] = useState(false);
-  const [vimMode, setVimMode] = useState(false);
-  const [obstacleMode, setObstacleMode] = useState(false);
-  const [speed, setSpeed] = useState("moderate");
-  const [gridSize, setGridSize] = useState("medium");
 
   // Snake specific state
   const [foodLocation, setFoodLocation] = useState([]);
@@ -102,6 +126,8 @@ const SnakeGame = ({ width, height, boxSize }) => {
           obstacleMode={obstacleMode}
           speed={speed}
           gridSize={gridSize}
+          speeds={speeds}
+          sizes={sizes}
           handleClickSettings={handleClickSettings}
           handleChangeVimMode={handleChangeVimMode}
           handleChangeObstacleMode={handleChangeObstacleMode}
@@ -125,8 +151,7 @@ const SnakeGame = ({ width, height, boxSize }) => {
           snakeDirection={snakeDirection}
           vimMode={vimMode}
           obstacleMode={obstacleMode}
-          speed={speed}
-          gridSize={gridSize}
+          timeoutTime={timeoutTime}
           updatePause={setPause}
           updateGameOver={setGameOver}
           updateFoodLocation={setFoodLocation}
