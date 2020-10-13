@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Emoji from "react-emoji-render";
 
 import Button from "./Button";
 
@@ -54,13 +55,15 @@ const SnakeInfo = ({
   }
 
   if (!started) {
-    startedLabel = <div>Click PLAY to start the game.</div>;
+    startedLabel = <div>Bad luck, you died. Click PLAY to start the game.</div>;
   }
 
   return (
     <StyledSnakeInfo inSettings={inSettings} className="game-info">
       {startedLabel}
-      <div>Score: {score}</div>
+      <div>
+        <Emoji text={`🍖 : ${score} 👑 : 100`} />
+      </div>
       {stateBtn}
       <Button
         label="settings"

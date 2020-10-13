@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Emoji from "react-emoji-render";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -17,7 +18,11 @@ const H1 = styled.h1`
 const SnakeHeader = ({ title }) => {
   return (
     <StyledHeader className="header">
-      <H1 className="header__text">{title}</H1>
+      <H1 className="header__text">
+        <Emoji text=":snake:" />
+        {title}
+        <Emoji text=":snake:" />
+      </H1>
     </StyledHeader>
   );
 };
