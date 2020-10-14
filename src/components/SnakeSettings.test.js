@@ -36,4 +36,26 @@ describe("Component: SnakeSettings", () => {
 
     expect(heading).toHaveTextContent("Settings");
   });
+
+  test("should render button correctly", () => {
+    const button = component.container.querySelector("button");
+
+    expect(button).toHaveTextContent("save settings");
+  });
+
+  test("should render 3 speed radio buttons", () => {
+    const speedControls = component.container.querySelectorAll(
+      ".control-speed"
+    );
+
+    expect(speedControls.length).toEqual(speeds.length);
+  });
+
+  test("should render 3 size radio buttons", () => {
+    const sizeControls = component.container.querySelectorAll(
+      ".control-gridsize"
+    );
+
+    expect(sizeControls.length).toEqual(sizes.length);
+  });
 });

@@ -49,8 +49,8 @@ const SnakeSettings = ({
   handleChangeSpeed,
   handleChangeGridSize,
 }) => {
-  const renderRadioButtons = (items, handleChange, value) => {
-    const renderRadios = () =>
+  const renderRadioButtons = (items, handleChange, value, classSuffix) => {
+    const renderRadios = (classSuffix) =>
       items.map((item) => {
         return (
           <FormControlLabel
@@ -59,6 +59,7 @@ const SnakeSettings = ({
             control={<Radio color="primary" />}
             label={<StyledLabel>{item}</StyledLabel>}
             labelPlacement="bottom"
+            className={`control-${classSuffix}`}
           />
         );
       });
@@ -71,7 +72,7 @@ const SnakeSettings = ({
         onChange={handleChange}
         value={value}
       >
-        {renderRadios()}
+        {renderRadios(classSuffix)}
       </RadioGroup>
     );
   };
@@ -110,11 +111,16 @@ const SnakeSettings = ({
             </StyledFormGroup>
             <StyledFormGroup>
               <StyledLabel>choose game speed</StyledLabel>
-              {renderRadioButtons(speeds, handleChangeSpeed, speed)}
+              {renderRadioButtons(speeds, handleChangeSpeed, speed, "speed")}
             </StyledFormGroup>
             <StyledFormGroup>
               <StyledLabel>choose grid size</StyledLabel>
-              {renderRadioButtons(sizes, handleChangeGridSize, gridSize)}
+              {renderRadioButtons(
+                sizes,
+                handleChangeGridSize,
+                gridSize,
+                "gridsize"
+              )}
             </StyledFormGroup>
           </FormControl>
         </Container>
