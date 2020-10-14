@@ -4,8 +4,6 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -17,6 +15,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "eslint": "eslint ."
   },
@@ -36,6 +35,9 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-jest": "^24.1.0"
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "eslint-plugin-jest": "^24.1.0",
+    "jest-styled-components": "^7.0.3"
   }
 }

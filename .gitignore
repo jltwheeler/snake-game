@@ -11,3 +11,6 @@
 
 # secrets
 .env
+
+# vscode
+jsconfig.json
