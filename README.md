@@ -2,6 +2,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
+[![Repo Size][repo-size-shield]][repo-size-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -143,11 +144,13 @@ Project Link: [https://github.com/jltwheeler/snake-game](https://github.com/jltw
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
+[contributors-shield]: https://img.shields.io/github/contributors/jltwheeler/snake-game.svg?style=flat-square
 [contributors-url]: https://github.com/jltwheeler/snake-game/graphs/contributors
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
+[stars-shield]: https://img.shields.io/github/stars/jltwheeler/snake-game.svg?style=flat-square
 [stars-url]: https://github.com/jltwheeler/snake-game/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
+[issues-shield]: https://img.shields.io/github/issues-raw/jltwheeler/snake-game
 [issues-url]: https://github.com/jltwheeler/snake-game/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
-[license-url]: https://github.com/jltwheeler/snake-game/blob/master/LICENSE.txt
+[license-shield]: https://img.shields.io/github/license/jltwheeler/snake-game.svg?style=flat-square
+[license-url]: https://github.com/jltwheeler/snake-game/blob/master/LICENSE
+[repo-size-shield]: https://img.shields.io/github/repo-size/jltwheeler/snake-game
+[repo-size-url]: https://github.com/jltwheeler/snake-game
