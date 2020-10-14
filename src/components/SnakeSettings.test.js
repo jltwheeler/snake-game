@@ -1,6 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
+import { prettyDOM } from "@testing-library/dom";
 
 import SnakeSettings from "./SnakeSettings";
 
@@ -30,7 +31,9 @@ describe("Component: SnakeSettings", () => {
     );
   });
 
-  test("should render component correctly", () => {
-    expect(component.container).toHaveTextContent("Settings");
+  test("should render heading correctly", () => {
+    const heading = component.container.querySelector("h2");
+
+    expect(heading).toHaveTextContent("Settings");
   });
 });
