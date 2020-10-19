@@ -16,11 +16,13 @@ const BoardRow = ({
   lastRow,
   foodLocation,
   snakeLocation,
+  obstacleLocation,
 }) => {
   const renderCols = () => {
     return [...Array(numCols)].map((_, idx) => {
       let isFood = false;
       let isSnake = false;
+      let isObstacle = false;
 
       if (idx === foodLocation[0] && rowNum === foodLocation[1]) {
         isFood = true;
@@ -34,6 +36,14 @@ const BoardRow = ({
         isSnake = true;
       }
 
+      if (
+        obstacleLocation.find(
+          (location) => idx === location[0] && rowNum === location[1]
+        )
+      ) {
+        isObstacle = true;
+      }
+
       return (
         <BoardBox
           key={`${rowNum}-${idx}`}
@@ -42,6 +52,7 @@ const BoardRow = ({
           lastRow={lastRow}
           isFood={isFood}
           isSnake={isSnake}
+          isObstacle={isObstacle}
         />
       );
     });

@@ -6,6 +6,7 @@ import SnakeHeader from "./SnakeHeader";
 import SnakeGrid from "./SnakeGrid";
 import SnakeInfo from "./SnakeInfo";
 import SnakeSettings from "./SnakeSettings";
+import { generateObstacles, generateRandFoodLoc } from "../utils/utils";
 
 const StyledSnakeGame = styled.div`
   display: flex;
@@ -51,12 +52,6 @@ const SnakeGame = ({ width, height }) => {
 
   const numRows = Math.floor(height / boxSize);
   const numCols = Math.floor(width / boxSize);
-  const generateRandLoc = () => {
-    return [
-      Math.floor(Math.random() * numCols),
-      Math.floor(Math.random() * numRows),
-    ];
-  };
 
   // Game playing state
   const [score, setScore] = useState(0);
@@ -68,6 +63,7 @@ const SnakeGame = ({ width, height }) => {
   const [foodLocation, setFoodLocation] = useState([]);
   const [snakeLocation, setSnakeLocation] = useState([]);
   const [snakeDirection, setSnakeDirection] = useState("down");
+  const [obstacles, setObstacles] = useState([]);
 
   useEffect(() => {
     const gameSettingsJSON = window.localStorage.getItem("gameSettings");
@@ -90,15 +86,25 @@ const SnakeGame = ({ width, height }) => {
 
     if (!started) {
       setStarted(true);
-      setFoodLocation(generateRandLoc());
       setSnakeLocation([[Math.round(numCols / 2), 1]]);
+      if (obstacleMode) {
+        setObstacles(generateObstacles(numCols, numRows));
+      } else {
+        setObstacles([]);
+      }
+      setFoodLocation(generateRandFoodLoc(numCols, numRows, obstacles));
     }
     setPause(!paused);
   };
 
   const handleResetGame = (event) => {
     event.preventDefault();
-    setFoodLocation(generateRandLoc());
+    if (obstacleMode) {
+      setObstacles(generateObstacles(numCols, numRows));
+    } else {
+      setObstacles([]);
+    }
+    setFoodLocation(generateRandFoodLoc(numCols, numRows, obstacles));
     setSnakeLocation([[Math.round(numCols / 2), 1]]);
     setSnakeDirection("down");
     setPause(!paused);
@@ -168,6 +174,7 @@ const SnakeGame = ({ width, height }) => {
           gameOver={gameOver}
           foodLocation={foodLocation}
           snakeLocation={snakeLocation}
+          obstacles={obstacles}
           score={score}
           updateScore={updateScore}
           snakeDirection={snakeDirection}
@@ -180,7 +187,6 @@ const SnakeGame = ({ width, height }) => {
           updateSnakeLocation={setSnakeLocation}
           updateSnakeDirection={setSnakeDirection}
           updateStarted={setStarted}
-          generateRandLoc={generateRandLoc}
         />
       );
     }

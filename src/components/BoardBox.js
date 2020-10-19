@@ -12,6 +12,8 @@ const StyledBoardBox = styled.div`
     if (props.isSnake) {
       return "green";
     } else if (props.isFood) {
+      return "orangered";
+    } else if (props.isObstacle) {
       return "lightblue";
     } else {
       return "";
@@ -19,7 +21,14 @@ const StyledBoardBox = styled.div`
   }};
 `;
 
-const BoardBox = ({ boxSize, lastRow, lastCol, isFood, isSnake }) => {
+const BoardBox = ({
+  boxSize,
+  lastRow,
+  lastCol,
+  isFood,
+  isSnake,
+  isObstacle,
+}) => {
   return (
     <StyledBoardBox
       boxSize={boxSize}
@@ -27,6 +36,7 @@ const BoardBox = ({ boxSize, lastRow, lastCol, isFood, isSnake }) => {
       lastCol={lastCol}
       isFood={isFood}
       isSnake={isSnake}
+      isObstacle={isObstacle}
     ></StyledBoardBox>
   );
 };

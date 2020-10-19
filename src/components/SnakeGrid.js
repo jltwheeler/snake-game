@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import BoardRow from "./BoardRow";
 import Container from "./Container";
+import { generateRandFoodLoc, arraysEqual } from "../utils/utils";
 
 const StyledSnakeGrid = styled.div`
   width: ${(props) => props.width}px;
@@ -19,6 +20,7 @@ const SnakeGrid = ({
   gameOver,
   foodLocation,
   snakeLocation,
+  obstacles,
   score,
   updateScore,
   snakeDirection,
@@ -31,20 +33,7 @@ const SnakeGrid = ({
   updateSnakeLocation,
   updateSnakeDirection,
   updateStarted,
-  generateRandLoc,
 }) => {
-  const arraysEqual = (firstArr, secondArr) => {
-    if (firstArr.length !== secondArr.length) {
-      return false;
-    }
-
-    for (let i = 0; i < firstArr.length; i++) {
-      if (firstArr[i] !== secondArr[i]) return false;
-    }
-
-    return true;
-  };
-
   const handleKeyDown = (event) => {
     if (!paused) {
       switch (event.keyCode) {
@@ -153,12 +142,19 @@ const SnakeGrid = ({
           makeGameOver();
         }
 
+        // Check if snake hits obstacle
+        if (obstacleMode) {
+          if (obstacles.find((item) => arraysEqual(item, newHeadLocation))) {
+            makeGameOver();
+          }
+        }
+
         const newSnakeLocation = [...snakeLocation];
 
         if (arraysEqual(newHeadLocation, foodLocation)) {
           // Snake eats the food
           updateSnakeLocation([newHeadLocation].concat(newSnakeLocation));
-          updateFoodLocation(generateRandLoc());
+          updateFoodLocation(generateRandFoodLoc(numCols, numRows, obstacles));
           updateScore();
         } else {
           // keep moving the snake
@@ -184,6 +180,7 @@ const SnakeGrid = ({
           lastRow={idx === numRows - 1 ? true : false}
           foodLocation={foodLocation}
           snakeLocation={snakeLocation}
+          obstacleLocation={obstacles}
         />
       );
     });
