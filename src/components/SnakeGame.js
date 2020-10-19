@@ -92,10 +92,15 @@ const SnakeGame = ({ width, height }) => {
       } else {
         setObstacles([]);
       }
-      setFoodLocation(generateRandFoodLoc(numCols, numRows, obstacles));
     }
     setPause(!paused);
   };
+
+  useEffect(() => {
+    if (started) {
+      setFoodLocation(generateRandFoodLoc(numCols, numRows, obstacles));
+    }
+  }, [obstacles, numCols, numRows, started]);
 
   const handleResetGame = (event) => {
     event.preventDefault();
@@ -104,7 +109,6 @@ const SnakeGame = ({ width, height }) => {
     } else {
       setObstacles([]);
     }
-    setFoodLocation(generateRandFoodLoc(numCols, numRows, obstacles));
     setSnakeLocation([[Math.round(numCols / 2), 1]]);
     setSnakeDirection("down");
     setPause(!paused);

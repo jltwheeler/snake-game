@@ -23,7 +23,7 @@ export const generateRandFoodLoc = (numCols, numRows, obstacleArr) => {
     arraysEqual(item, randomLoc)
   );
 
-  if (foodBlockedByObstacle) {
+  if (Array.isArray(foodBlockedByObstacle)) {
     return generateRandFoodLoc(numCols, numRows, obstacleArr);
   } else {
     return randomLoc;

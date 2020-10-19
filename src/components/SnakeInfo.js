@@ -65,7 +65,7 @@ const SnakeInfo = ({
   }
 
   if (!started) {
-    startedLabel = <div>Bad luck, you died. Click PLAY to start the game.</div>;
+    startedLabel = <div>Click PLAY to start the game.</div>;
   }
 
   return (
