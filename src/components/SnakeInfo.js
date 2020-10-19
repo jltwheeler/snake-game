@@ -29,6 +29,16 @@ const SnakeInfo = ({
 }) => {
   let stateBtn, startedLabel;
 
+  const getHighScore = () => {
+    const highScore = window.localStorage.getItem("highScore");
+
+    if (highScore) {
+      return highScore;
+    } else {
+      return 0;
+    }
+  };
+
   if (gameOver) {
     stateBtn = (
       <Button
@@ -62,7 +72,7 @@ const SnakeInfo = ({
     <StyledSnakeInfo inSettings={inSettings} className="game-info">
       {startedLabel}
       <div>
-        <Emoji text={`🍖 : ${score} 👑 : 100`} />
+        <Emoji text={`🍖 : ${score} 👑 : ${getHighScore()}`} />
       </div>
       {stateBtn}
       <Button

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { StylesProvider } from "@material-ui/core/styles";
 
@@ -19,7 +19,7 @@ const StyledSnakeGame = styled.div`
 
 const SnakeGame = ({ width, height }) => {
   // Settings state
-  const [inSettings, setInSettings] = useState(true);
+  const [inSettings, setInSettings] = useState(false);
   const [vimMode, setVimMode] = useState(false);
   const [obstacleMode, setObstacleMode] = useState(false);
   const [speed, setSpeed] = useState("moderate");
@@ -69,6 +69,18 @@ const SnakeGame = ({ width, height }) => {
   const [snakeLocation, setSnakeLocation] = useState([]);
   const [snakeDirection, setSnakeDirection] = useState("down");
 
+  useEffect(() => {
+    const gameSettingsJSON = window.localStorage.getItem("gameSettings");
+
+    if (gameSettingsJSON) {
+      const gameSettings = JSON.parse(gameSettingsJSON);
+      setVimMode(gameSettings.vimMode);
+      setObstacleMode(gameSettings.obstacleMode);
+      setSpeed(gameSettings.speed);
+      setGridSize(gameSettings.gridSize);
+    }
+  }, []);
+
   const updateScore = () => {
     setScore(score + 1);
   };
@@ -97,6 +109,15 @@ const SnakeGame = ({ width, height }) => {
 
   const handleClickSettings = (event) => {
     event.preventDefault();
+    window.localStorage.setItem(
+      "gameSettings",
+      JSON.stringify({
+        vimMode,
+        obstacleMode,
+        speed,
+        gridSize,
+      })
+    );
     setInSettings(!inSettings);
   };
 
@@ -147,6 +168,7 @@ const SnakeGame = ({ width, height }) => {
           gameOver={gameOver}
           foodLocation={foodLocation}
           snakeLocation={snakeLocation}
+          score={score}
           updateScore={updateScore}
           snakeDirection={snakeDirection}
           vimMode={vimMode}

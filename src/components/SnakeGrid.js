@@ -19,10 +19,11 @@ const SnakeGrid = ({
   gameOver,
   foodLocation,
   snakeLocation,
+  score,
   updateScore,
   snakeDirection,
   vimMode,
-  obstalceMode,
+  obstacleMode,
   timeoutTime,
   updatePause,
   updateGameOver,
@@ -94,6 +95,16 @@ const SnakeGrid = ({
       updatePause(true);
       updateGameOver(!gameOver);
       updateStarted(false);
+
+      const highScore = window.localStorage.getItem("highScore");
+
+      if (highScore) {
+        if (score > parseInt(highScore)) {
+          window.localStorage.setItem("highScore", score);
+        }
+      } else {
+        window.localStorage.setItem("highScore", toString(score));
+      }
     };
 
     const timeout = setTimeout(() => {
